@@ -50,6 +50,34 @@ Team deQueue(Queue *q)
     return v;
 }
 
+TeamNode *deQueueMove(Queue *q)
+{
+    TeamNode *aux;
+    if (q->front == NULL)
+    {
+        printf("Coada este goala\n");
+        exit(1);
+    }
+    aux = q->front;
+    q->front = q->front->next;
+    if (q->front == NULL)
+        q->rear = NULL;
+    return aux;
+}
+
+void enQueueMove(Queue *q, TeamNode *aux)
+{
+    if (q->rear == NULL)
+    {
+        q->front = q->rear = aux;
+    }
+    else
+    {
+        q->rear->next = aux;
+        q->rear = aux;
+    }
+}
+
 int isEmptyQ(Queue *q)
 {
     return (q->front == NULL);
@@ -65,4 +93,35 @@ void deleteQueue(Queue *q)
         free(aux);
     }
     free(q);
+}
+void compareTeams1(Queue *Winners, Queue *Losers, int **adjMatrix, Team t1, Team t2)
+{
+    if (t1.score > t2.score || (t1.score == t2.score && strcmp(t1.name, t2.name) > 0))
+    {
+        enQueue(Winners, t1);
+        enQueue(Losers, t2);
+        adjMatrix[t2.id][t1.id] = 1;
+    }
+    else if (t1.score < t2.score || (t1.score == t2.score && strcmp(t1.name, t2.name) < 0))
+    {
+        enQueue(Winners, t2);
+        enQueue(Losers, t1);
+        adjMatrix[t1.id][t2.id] = 1;
+    }
+}
+
+void compareTeams2(Queue *Winners, Queue *Losers, int **adjMatrix, TeamNode *t1, TeamNode *t2)
+{
+    if (t1->val.score > t2->val.score || (t1->val.score == t2->val.score && strcmp(t1->val.name, t2->val.name) > 0))
+    {
+        enQueueMove(Winners, t1);
+        enQueueMove(Losers, t2);
+        adjMatrix[t2->val.id][t1->val.id] = 1;
+    }
+    else if (t1->val.score < t2->val.score || (t1->val.score == t2->val.score && strcmp(t1->val.name, t2->val.name) < 0))
+    {
+        enQueueMove(Winners, t2);
+        enQueueMove(Losers, t1);
+        adjMatrix[t1->val.id][t2->val.id] = 1;
+    }
 }

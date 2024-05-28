@@ -29,53 +29,35 @@ int main(int argc, char *argv[])
             adjMatrix[i][j] = 0;
         }
     }
-
     int remainingTeams = 32;
-    for (int i = 1; i <= 32; i = i + 2)
+    for (int i = 0; i < 31; i = i + 2)
     {
         Team t1 = readTeam(input, i);
         Team t2 = readTeam(input, i + 1);
-
-        if (t1.score > t2.score || (t1.score == t2.score && strcmp(t1.name, t2.name) > 0))
-        {
-            enQueue(Winners, t1);
-            enQueue(Losers, t2);
-            adjMatrix[t2.id - 1][t1.id - 1] = 1;
-        }
-        else if (t1.score < t2.score || (t1.score == t2.score && strcmp(t1.name, t2.name) < 0))
-        {
-            enQueue(Winners, t2);
-            enQueue(Losers, t1);
-            adjMatrix[t1.id - 1][t2.id - 1] = 1;
-        }
+        compareTeams1(Winners, Losers, adjMatrix, t1, t2);
+        // se compara echipele iar castigatoarea se pune in coada de Winners, iar cealalta in coada de Losers
+        // se compara structurile de echipe si se aloca memorie, deoarece se adauga pentru prima data in coada
     }
     remainingTeams = remainingTeams / 2;
-
     while (!isEmptyQ(Winners) && remainingTeams > 1)
     {
-        Team t1 = deQueue(Winners);
-        Team t2 = deQueue(Winners);
-
-        if (t1.score > t2.score || (t1.score == t2.score && strcmp(t1.name, t2.name) > 0))
-        {
-            enQueue(Winners, t1);
-            enQueue(Losers, t2);
-            adjMatrix[t2.id - 1][t1.id - 1] = 1;
-        }
-        else if (t1.score < t2.score || (t1.score == t2.score && strcmp(t1.name, t2.name) < 0))
-        {
-            enQueue(Winners, t2);
-            enQueue(Losers, t1);
-            adjMatrix[t1.id - 1][t2.id - 1] = 1;
-        }
-        remainingTeams = remainingTeams / 2;
-        printf("%d\n", remainingTeams);
+        TeamNode *t1 = deQueueMove(Winners);
+        TeamNode *t2 = deQueueMove(Winners);
+        compareTeams2(Winners, Losers, adjMatrix, t1, t2);
+        // se compara echipele iar castigatoarea se pune in coada de Winners, iar cealalta in coada de Losers
+        // se compara nodurile de echipe si nu se aloca memorie, deoarece nodurile sunt deja in coada
+        // doar se muta dintr-o coada in alta
+        remainingTeams--;
     }
-    Team aux = deQueue(Winners);
-    deleteQueue(Winners);
-    enQueue(Losers, aux);
 
-    printMatrix(outputGraf, adjMatrix, 32);
+    TeamNode *aux = deQueueMove(Winners);
+    free(Winners);            // in coada de Winners nu mai sunt echipe
+    enQueueMove(Losers, aux); // toate echipele sunt in coada de Losers
 
+    printMatrix(outputGraf, adjMatrix, 32); // afisare matrice de adiacenta
+
+    // task 2
+    freeMatrix(adjMatrix, 32);
+    closeFiles(input, outputGraf, outputScor);
     return 0;
 }
