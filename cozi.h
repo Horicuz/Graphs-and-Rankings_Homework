@@ -28,3 +28,4 @@ void enQueueMove(Queue *q, TeamNode *aux);
 void deleteQueue(Queue *q);
 void compareTeams1(Queue *Winners, Queue *Losers, int **adjMatrix, Team t1, Team t2);
 void compareTeams2(Queue *Winners, Queue *Losers, int **adjMatrix, TeamNode *t1, TeamNode *t2);
+void compareTeams3(Queue *Losers, int **adjMatrix, TeamNode *t1, TeamNode *t2);

@@ -13,7 +13,14 @@ Am realizat setup-ul temei:
 -In timpul acestui proces am modificat matricea de adiacenta a grafului, unde daca j il bate pe i, atunci de la varful i la j exista o muchie.  
 -Am afisat matricea de adiacenta la final.  
 
-## TASK 2 ~ INCOMPLETE
+## TASK 2 ~ COMPLETE
+-Dupa ce am aflat toate rezultatele, toate echipele sunt salvate in coada de losers, astfel am putut elibera coada winner.  
+-Stiind ca sunt 32 de echipe am scos din coada si am eliberat in acelasi timp nodurile cu echipele pentru care am calculat Pr si l-am afisat alaturi de numele respectiv (float cu 4 zecimale).  
+-Ordinea dorita facea referire la ordinea din coada de loseri unde rear = winner si front = primul loser.  
+-La final am eliberat memoria si pentru matricea de adiacenta.  
  
 
 ## INFO
+-Am lucrat cu un singur set de noduri, mutandu-le dintr-o coada in alta, acest lucru avand ca efect nefunctionalitatea functiei isEmptyQ().  
+-Fiecare nod adaugat la finalul unei cozi era un nod deja existent, astfel ca avea ocupata deja pozitia de ->next. Cu alte cuvinte, cand ajungeam cu un singur element in coada (rear = front), front->next nu era null, ci "pointa" catre o valoare, iar eliberarea pointerului ->next ducea la pierderea memoriei nodului care se alfa in cealalta coada.(Losers).    
+-Am realizat mai multe functii cum ar fi CompareTeams 1,2,3 si m-am folosit de functiile specifice pentru cozi.  

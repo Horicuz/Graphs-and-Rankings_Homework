@@ -32,6 +32,7 @@ Team createTeam(int id, char *name, float score)
     t.name = (char *)malloc(100 * sizeof(char));
     strcpy(t.name, name);
     t.score = score;
+    t.wins = 0;
     return t;
 }
 
@@ -42,6 +43,7 @@ Team readTeam(FILE *input, int j)
     float score;
 
     fscanf(input, "%f", &score);
+    fscanf(input, "%c", &auxChar);
     while (fscanf(input, "%c", &auxChar) && auxChar != '\n')
     {
         name[strlen(name)] = auxChar;
@@ -81,4 +83,19 @@ void freeMatrix(int **adjMatrix, int n)
         free(adjMatrix[i]);
     }
     free(adjMatrix);
+}
+
+float power(float x, int y) // x^y
+{
+    float result = 1;
+    for (int i = 0; i < y; i++)
+    {
+        result *= x;
+    }
+    return result;
+}
+
+float calculatePrestige(float q, int l, int r)
+{
+    return (float)((float)q * (float)power((float)(2 - q), r)) / ((float)power((float)2, l) + (float)power((float)(2 - q), l) * (float)(q - 1));
 }

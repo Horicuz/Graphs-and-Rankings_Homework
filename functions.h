@@ -10,3 +10,4 @@ Team createTeam(int id, char *name, float score);
 Team readTeam(FILE *input, int j);
 void printMatrix(FILE *output, int **adjMatrix, int n);
 void freeMatrix(int **adjMatrix, int n);
+float calculatePrestige(float q, int l, int r);
