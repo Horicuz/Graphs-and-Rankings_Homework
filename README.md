@@ -31,13 +31,13 @@ The setup for the project has been completed as follows:
 1. **Clone the Repository**
    Clone the project repository to your local machine:
    ```bash
-   git clone <repository-url>
+   git clone [<repository-url>](https://github.com/Horicuz/Graphs-and-Rankings_Homework.git)
    ```
 
 2. **Navigate to the Project Directory**
    Change the directory to the project folder:
    ```bash
-   cd <project-folder>
+   cd Graphs-and-Rankings_Homework
    ```
 
 3. **Setup the Project**
