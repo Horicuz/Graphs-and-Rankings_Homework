@@ -1,26 +1,72 @@
-# Grafuri si clasamente ~ TEMA 2 PROIECTAREA ALGORITIMILOR
+# Graphs and Rankings ~ PROJECT 2: ALGORITHM DESIGN
 
 ## Setup ~ COMPLETE
-Am realizat setup-ul temei:
+The setup for the project has been completed as follows:
 
--Am creat folderul proiectului in care am introdus checkerul impreuna cu fisierele de intrare/iesire.  
--Am creat Makefile-ul corespunzator checkerului.  
+- Created the project folder containing the checker alongside input/output files.  
+- Created the Makefile necessary for the checker.
 
 ## TASK 1 ~ COMPLETE
--Am citit cele 32 de echipe din fisierul de input.  
--Am realizat meciurile 2 cate 2, adaugand castigatorii si invinsii in doua cozi diferite.  
--Am repetat procesul de a lua 2 echipe din coada de castigatori, de a pune invisul in coada de invinsi si castigatorul la loc in coada de castigatori, pana s-au jucat toate meciurile.  
--In timpul acestui proces am modificat matricea de adiacenta a grafului, unde daca j il bate pe i, atunci de la varful i la j exista o muchie.  
--Am afisat matricea de adiacenta la final.  
+- Read the 32 teams from the input file.  
+- Simulated matches pairwise, adding winners and losers into two separate queues.  
+- Repeated the process of taking two teams from the winners' queue, adding the loser to the losers' queue, and putting the winner back into the winners' queue until all matches were completed.  
+- During this process, updated the adjacency matrix of the graph. If team `j` defeats team `i`, there is an edge from vertex `i` to `j`.  
+- Printed the adjacency matrix at the end.
 
 ## TASK 2 ~ COMPLETE
--Dupa ce am aflat toate rezultatele, toate echipele sunt salvate in coada de losers, astfel am putut elibera coada winner.  
--Stiind ca sunt 32 de echipe am scos din coada si am eliberat in acelasi timp nodurile cu echipele pentru care am calculat Pr si l-am afisat alaturi de numele respectiv (float cu 4 zecimale).  
--Ordinea dorita facea referire la ordinea din coada de loseri unde rear = winner si front = primul loser.  
--La final am eliberat memoria si pentru matricea de adiacenta.  
- 
+- After determining all results, all teams were saved in the losers' queue, enabling the winners' queue to be freed.  
+- Knowing there are 32 teams, dequeued nodes containing teams from the losers' queue, computed their PageRank (Pr), and displayed it alongside the respective team name (float with 4 decimal places).  
+- The required order referred to the order in the losers' queue where `rear = winner` and `front = first loser`.  
+- Finally, freed the memory for the adjacency matrix as well.
 
-## INFO
--Am lucrat cu un singur set de noduri, mutandu-le dintr-o coada in alta, acest lucru avand ca efect nefunctionalitatea functiei isEmptyQ().  
--Fiecare nod adaugat la finalul unei cozi era un nod deja existent, astfel ca avea ocupata deja pozitia de ->next. Cu alte cuvinte, cand ajungeam cu un singur element in coada (rear = front), front->next nu era null, ci "pointa" catre o valoare, iar eliberarea pointerului ->next ducea la pierderea memoriei nodului care se alfa in cealalta coada.(Losers).    
--Am realizat mai multe functii cum ar fi CompareTeams 1,2,3 si m-am folosit de functiile specifice pentru cozi.  
+## Additional Information
+- Worked with a single set of nodes, moving them between queues. This caused the `isEmptyQ()` function to become non-functional.
+- Each node added to the end of a queue was an already existing node, meaning its `->next` pointer was already occupied. When only one element remained in a queue (`rear = front`), `front->next` was not null but instead pointed to a value. Freeing the `->next` pointer caused memory loss for the node located in the other queue (Losers).
+- Implemented several functions such as `CompareTeams 1, 2, 3` and utilized specific queue-related functions.
+
+---
+
+## How to Run
+
+1. **Clone the Repository**
+   Clone the project repository to your local machine:
+   ```bash
+   git clone <repository-url>
+   ```
+
+2. **Navigate to the Project Directory**
+   Change the directory to the project folder:
+   ```bash
+   cd <project-folder>
+   ```
+
+3. **Setup the Project**
+   Ensure the project folder contains the input files, output files, and the checker script.
+
+4. **Compile the Code**
+   Use the provided Makefile to compile the project:
+   ```bash
+   make
+   ```
+
+5. **Run the Checker**
+   Execute the checker script with the appropriate input file:
+   ```bash
+   ./checker input_file output_file
+   ```
+
+6. **Inspect Results**
+   - The adjacency matrix and computed rankings will be printed or saved as specified in the implementation.
+   - Outputs will be compared with expected results using the checker.
+
+7. **Clean Up**
+   To remove compiled files, use:
+   ```bash
+   make clean
+   ```
+
+---
+
+### Notes
+- Ensure input files are formatted correctly as per the problem specifications.
+- Modify or extend `CompareTeams` functions and queue operations as needed to address specific requirements or edge cases.
