@@ -31,7 +31,7 @@ The setup for the project has been completed as follows:
 1. **Clone the Repository**
    Clone the project repository to your local machine:
    ```bash
-   git clone [<repository-url>](https://github.com/Horicuz/Graphs-and-Rankings_Homework.git)
+   git clone https://github.com/Horicuz/Graphs-and-Rankings_Homework.git
    ```
 
 2. **Navigate to the Project Directory**
@@ -41,7 +41,7 @@ The setup for the project has been completed as follows:
    ```
 
 3. **Setup the Project**
-   Ensure the project folder contains the input files, output files, and the checker script.
+   Ensure the project folder contains the input files, output files, and the checker script. Verify that all dependencies are installed and the Makefile is present.
 
 4. **Compile the Code**
    Use the provided Makefile to compile the project:
@@ -52,18 +52,27 @@ The setup for the project has been completed as follows:
 5. **Run the Checker**
    Execute the checker script with the appropriate input file:
    ```bash
-   ./checker input_file output_file
+   ./checker.sh Input/input_file Output/output_file
    ```
+   Replace `input_file` and `output_file` with the actual file names provided in the `Input` and `Output` directories.
 
 6. **Inspect Results**
    - The adjacency matrix and computed rankings will be printed or saved as specified in the implementation.
    - Outputs will be compared with expected results using the checker.
 
 7. **Clean Up**
-   To remove compiled files, use:
+   To remove compiled files and binaries, use:
    ```bash
    make clean
    ```
+
+8. **Additional Notes for Beginners**
+   - Ensure you have `gcc` and `make` installed on your system.
+   - If you encounter permission issues while running `checker.sh`, grant execute permissions using:
+     ```bash
+     chmod +x checker.sh
+     ```
+   - Follow the folder structure as indicated in the repository to avoid file path errors.
 
 ---
 
